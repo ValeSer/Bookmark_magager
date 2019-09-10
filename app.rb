@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require './lib/bookmark.rb'
 
 class Bookmark_manager < Sinatra::Base
   enable :sessions
@@ -8,10 +9,7 @@ class Bookmark_manager < Sinatra::Base
   end
 
   get '/bookmarks' do
-    @bookmarks = [
-      "http://www.google.com",
-      "http://www.facebook.com"
-    ]
+    @bookmarks = Bookmark.all
     erb :'bookmarks'
   end
 

@@ -9,6 +9,11 @@ As a User, so I can
 see the pages I saved
 I want to have them displayed in a list  
 ```
+```
+As a User, So I can
+save new bookmarks
+I would like to add them to my bookmark manager.
+```
 
 ## To set up the database
 

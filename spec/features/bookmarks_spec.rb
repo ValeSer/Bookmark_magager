@@ -2,18 +2,13 @@ require 'pg'
 
 feature 'Viewing bookmarks' do
   scenario 'A user can see bookmarks' do
-      connection = PG.connect(dbname: 'bookmark_manager_test')
+    bookmark1 = Bookmark.add(url: 'http://www.makersacademy.com', title: 'Makers')
+    bookmark2 = Bookmark.add(url: 'http://www.google.com', title: 'Google')
+    bookmark3 = Bookmark.add(url: 'http://www.facebook.com', title: 'Facebook')
 
-      # Add the test data
-      connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.makersacademy.com');")
-      connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.destroyallsoftware.com');")
-      connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.google.com');")
-      connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.facebook.com');")
-
-      visit('/bookmarks')
-      expect(page).to have_content "http://www.makersacademy.com"
-      expect(page).to have_content "http://www.destroyallsoftware.com"
-      expect(page).to have_content "http://www.google.com"
-      expect(page).to have_content "http://www.facebook.com"
+    visit('/bookmarks')
+    expect(page).to have_link(bookmark1.title, href: bookmark1.url)
+    expect(page).to have_link(bookmark2.title, href: bookmark2.url)
+    expect(page).to have_link(bookmark3.title, href: bookmark3.url)
   end
 end

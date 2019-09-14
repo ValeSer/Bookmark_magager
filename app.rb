@@ -18,7 +18,7 @@ class Bookmark_manager < Sinatra::Base
   end
 
   post '/add' do
-    Bookmark.add(params[:url])
+    Bookmark.add(url: params[:url], title: params[:title])
     redirect '/bookmarks'
   end
 
